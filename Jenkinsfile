@@ -13,7 +13,7 @@ pipeline {
                 script {
                    echo " testing the application ...."
                     sh "cd ./code"
-                    sh "ll"
+                    sh "ls"
                     sh 'mvn test'
                 }
             }
