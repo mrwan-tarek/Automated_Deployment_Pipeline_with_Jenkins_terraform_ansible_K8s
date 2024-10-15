@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                    echo " testing the application ...."
-                    sh 'cd ./code'
+                    #sh 'cd ./code'
                     sh 'mvn test'
                 }
             }
