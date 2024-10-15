@@ -2,7 +2,7 @@
 pipeline {
     agent any
     parameters {
-            string(name: 'IMAGE_NAME', defaultValue: 'maven', description: 'The name of the Docker image to build and push')
+            string(name: 'IMAGE_NAME', defaultValue: 'trial_maven', description: 'The name of the Docker image to build and push')
             string(name: 'PORT_MAPPING', defaultValue: '8090', description: 'Port mapping for the container (e.g., xxxx:8080)')
         }
 
