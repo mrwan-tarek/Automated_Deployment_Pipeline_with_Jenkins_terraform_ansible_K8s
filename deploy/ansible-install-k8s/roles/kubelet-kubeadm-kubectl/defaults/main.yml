@@ -1,0 +1,3 @@
+---
+# defaults file for kubelet-kubeadm-kubectl
+kubernetes_version: "1.21.0-00"
