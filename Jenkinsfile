@@ -14,7 +14,6 @@ pipeline {
                    echo " testing the application ...."
                     sh """
                     cd ./code
-                    ls
                     mvn test
                     """
                 }
@@ -24,7 +23,10 @@ pipeline {
             steps {
                 script {
                     echo 'building the application ....'
-                    sh 'mvn package'
+                    sh """
+                    cd ./code
+                    mvn package
+                    """
                 }
             }
         }
@@ -32,7 +34,7 @@ pipeline {
             steps {
                 script {
                     echo 'building the docker image...'
-                    sh "docker build -t ${params.IMAGE_NAME} ."
+                    sh "docker build -t ${params.IMAGE_NAME} ./code"
                     
                 }
             }
