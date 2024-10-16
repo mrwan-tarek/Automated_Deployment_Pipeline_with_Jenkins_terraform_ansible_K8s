@@ -6,11 +6,22 @@
     mode: '0755'
   become: yes
 
-- name: Download Kubernetes apt repository GPG key
-  get_url:
-    url: https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key
+#- name: Download Kubernetes apt repository GPG key
+#  get_url:
+#    url: https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key
+#    dest: /etc/apt/keyrings/kubernetes-apt-key.gpg
+#  become: yes
+
+- name: Copy Kubernetes GPG key to target machine
+  copy:
+    src: /tmp/kubernetes-apt-key.gpg
     dest: /etc/apt/keyrings/kubernetes-apt-key.gpg
-  become: yes
+
+- name: Add Kubernetes GPG key to APT
+  apt_key:
+    file: /etc/apt/keyrings/kubernetes-apt-key.gpg
+    state: present
+
 
 - name: Convert Kubernetes GPG key to gpg format
   command: gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /etc/apt/keyrings/kubernetes-apt-key.gpg

@@ -88,6 +88,7 @@ pipeline {
                     echo 'deploying the application ....'
                     sh """
                     curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /tmp/docker.gpg
+                    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key -o /tmp/kubernetes-apt-key.gpg
                     cd ./deploy/terraform-project/
                     terraform init
                     terraform apply --auto-approve 
