@@ -6,6 +6,7 @@
     - gnupg
     - lsb-release
     - apt-transport-https
+    - software-properties-common
     state: latest
     update_cache: yes
 
