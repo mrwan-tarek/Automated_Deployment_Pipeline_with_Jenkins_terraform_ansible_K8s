@@ -5,8 +5,8 @@ module "sg-create" {
 
 module "vpc" {
   source = "./modules/vpc"
-  cidr_block_vpc = "10.0.0.0/16"
-  cidr_block_public_subnet_1 = "10.0.1.0/24"
+  cidr_block_vpc = var.cidr_vpc
+  cidr_block_public_subnet_1 = var.cidr_subnet
 }
 
 module "key-pair-create" {
@@ -20,6 +20,7 @@ module "controller" {
     security_group_id = module.sg-create.sg_id
     key_pair_name = var.key_pair_name
     public_subnet_1_id = module.vpc.public_subnet_1_id
+    instance_type = var.instance_type
 }
 
 module "workers" { 
@@ -29,6 +30,8 @@ module "workers" {
     worker_count = var.worker_count
     key_pair_name = var.key_pair_name
     public_subnet_1_id = module.vpc.public_subnet_1_id
+    instance_type = var.instance_type
+
 }
 
 resource "local_file" "ansible_inventory" {
