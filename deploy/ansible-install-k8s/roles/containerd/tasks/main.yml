@@ -23,67 +23,23 @@
 #  apt_repository:
 #    repo: deb [arch=amd64] https://download.docker.com/{{ ansible_system | lower }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
 
-# Step 1: Update apt cache
-- name: Update apt cache
-  apt:
-    update_cache: yes
-  when: ansible_os_family == "Debian"
 
-# Step 2: Install prerequisites for Docker and containerd
-- name: Install prerequisites for Docker and containerd
-  apt:
-    name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - software-properties-common
-    state: present
-    update_cache: yes
+- name: Copy Docker GPG key to target machine
+  copy:
+    src: /tmp/docker.gpg
+    dest: /tmp/docker.gpg
 
-# Step 3: Add Docker GPG key
-- name: Add Docker GPG key
+- name: Add Docker GPG key to APT
   apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
+    file: /tmp/docker.gpg
     state: present
 
-# Step 4: Add Docker repository
-- name: Add Docker repository
-  apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
-    state: present
 
-# Step 5: Install Docker
-- name: Install Docker
-  apt:
-    name: docker-ce
-    state: present
-    update_cache: yes
-
-# Step 6: Install containerd
-- name: Install containerd
+- name: install containerd
   apt:
     name: containerd.io
     state: present
     update_cache: yes
-
-# Step 7: Start Docker and containerd services
-- name: Start Docker service
-  service:
-    name: docker
-    state: started
-    enabled: yes
-
-- name: Start containerd service
-  service:
-    name: containerd
-    state: started
-    enabled: yes
-
-#- name: install containerd
-#  apt:
-#    name: containerd.io
-#    state: present
-#    update_cache: yes
 
 - name: Apply the default configuration for the containerd
   shell: | 

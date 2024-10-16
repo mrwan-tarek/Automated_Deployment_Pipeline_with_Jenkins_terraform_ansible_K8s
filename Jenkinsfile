@@ -87,6 +87,7 @@ pipeline {
                 script {
                     echo 'deploying the application ....'
                     sh """
+                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /tmp/docker.gpg
                     cd ./deploy/terraform-project/
                     terraform init
                     terraform apply --auto-approve 
