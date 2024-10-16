@@ -64,19 +64,7 @@ pipeline {
                 }
             }
         }
-        stage(' create variables file') {
-            steps {
-                script {
-                    echo 'creating tfvars ....'
-                    sh """
-                    cd ./deploy/terraform-project/
-                    terraform init
-                    terraform apply --auto-approve 
-                    """
-                }
-            }
-        }
-
+    
         stage(' creating .tfvars file ') {
             steps {
                 script {
