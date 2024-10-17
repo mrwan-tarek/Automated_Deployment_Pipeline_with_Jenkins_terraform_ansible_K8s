@@ -34,9 +34,9 @@
 
     - name: Download calico manifest to the cluster
       shell: |
-        curl -k -o /root/calico.yaml https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+        curl -k -o ~/calico.yaml https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
       args:
-        creates: /root/calico.yaml
+        creates: ~/calico.yaml
 
 
     - name: Apply calico manifest to the cluster.
