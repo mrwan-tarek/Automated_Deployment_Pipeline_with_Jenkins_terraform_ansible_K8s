@@ -11,8 +11,8 @@ pipeline {
             string(name: 'cidr_vpc', defaultValue: '10.0.0.0/16' )
             string(name: 'cidr_subnet', defaultValue: '10.0.1.0/24' )
             string(name: 'instance_type', defaultValue: 't2.medium' )            
-            string(name: 'public_key_path', defaultValue: '/home/mrwan/.ssh/id_rsa.pub' )
-            string(name: 'private_ssh_key', defaultValue: '/home/mrwan/.ssh/id_rsa' )
+            string(name: 'public_key_path', defaultValue: '~/.ssh/id_rsa.pub' )
+            string(name: 'private_ssh_key', defaultValue: '~/.ssh/id_rsa' )
             string(name: 'key_pair_name', defaultValue: 'cluster_key' )
 
 
