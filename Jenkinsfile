@@ -25,6 +25,7 @@ pipeline {
                 script {
                    echo " testing the application ...."
                     sh """
+                    whoami
                     cd ./code
                     mvn test
                     """
