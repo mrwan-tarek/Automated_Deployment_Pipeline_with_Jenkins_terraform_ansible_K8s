@@ -72,7 +72,6 @@ pipeline {
                     sh "echo \"profile = \\\"\${profile}\\\" \"  >> ./deploy/terraform-project/terraform.tfvars "
                     sh "echo \"worker_count = \\\"\${worker_count}\\\" \"  >> ./deploy/terraform-project/terraform.tfvars "
                     sh "echo \"cidr_vpc = \\\"\${cidr_vpc}\\\" \"  >> ./deploy/terraform-project/terraform.tfvars "
-                    sh "echo \"vpc_CIDR = \\\"\${vpc_CIDR}\\\" \"  >> ./deploy/terraform-project/terraform.tfvars "
                     sh "echo \"cidr_subnet = \\\"\${cidr_subnet}\\\" \"  >> ./deploy/terraform-project/terraform.tfvars "
                     sh "echo \"instance_type = \\\"\${instance_type}\\\" \"  >> ./deploy/terraform-project/terraform.tfvars "
                     sh "echo \"public_key_path = \\\"\${public_key_path}\\\" \"  >> ./deploy/terraform-project/terraform.tfvars "
