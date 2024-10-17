@@ -47,17 +47,6 @@ resource "aws_security_group" "allow_tls_http_ssh" {
       self = false
       security_groups = []
       prefix_list_ids = []
-    },
-    {
-      description = "Allow All for Egress"
-      from_port        = 0
-      to_port          = 0
-      protocol         = "-1"
-      cidr_blocks      = [ "0.0.0.0/0" ]
-      ipv6_cidr_blocks = [ "::/0" ]
-      self = false
-      security_groups = []
-      prefix_list_ids = []
     }
   ]
 
