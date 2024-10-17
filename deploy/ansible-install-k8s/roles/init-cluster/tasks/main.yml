@@ -26,11 +26,18 @@
           remote_src: true
 
     ############## download and apply the calico network add-on ###############
-    - name: Download calico manifest to the cluster.
-      ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
-        dest: ~/calico.yaml
-        mode: '0664'
+    #- name: Download calico manifest to the cluster.
+    #  ansible.builtin.get_url:
+    #    url: https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+    #    dest: ~/calico.yaml
+    #    mode: '0664'
+
+    - name: Download calico manifest to the cluster
+      shell: |
+        curl -k -o /root/calico.yaml https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+      args:
+        creates: /root/calico.yaml
+
 
     - name: Apply calico manifest to the cluster.
       kubernetes.core.k8s:
