@@ -80,6 +80,18 @@ pipeline {
             }
         }
 
+        stage(' Destroy before build ') {
+            steps {
+                script {
+                    echo 'Destroy before build ....'
+                    sh """
+                    cd ./deploy/terraform-project/
+                    terraform init
+                    terraform destroy --auto-approve 
+                    """
+                }
+            }
+        }
         stage(' Deploy k8s cluster ') {
             steps {
                 script {
