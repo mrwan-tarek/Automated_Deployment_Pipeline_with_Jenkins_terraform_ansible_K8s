@@ -1,3 +1,3 @@
-output "load_balancer_dns" {
-  value = aws_lb.my_lb.dns_name
+output "eip" {
+  value = ["$aws_instance.workers.*.public_ip"]
 }
