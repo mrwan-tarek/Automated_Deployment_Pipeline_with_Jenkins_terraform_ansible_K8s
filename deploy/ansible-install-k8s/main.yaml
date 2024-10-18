@@ -38,10 +38,8 @@
       command: sh join.sh
 ################################################################
 - hosts: master
-  name: cluster init and installing flannel networking solution
+  name: copy Deployment file and Deploying it
   become: true
-  roles:
-    - { role: init-cluster, tags: init-cluster }
   tasks:
     - name: Copy Deployment file to master machine
       copy:
