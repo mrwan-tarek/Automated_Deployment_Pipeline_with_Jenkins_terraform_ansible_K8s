@@ -47,6 +47,28 @@ resource "aws_security_group" "allow_tls_http_ssh" {
       self = false
       security_groups = []
       prefix_list_ids = []
+    },
+#    {
+#      description      = "node_port"
+#      from_port        = 30000
+#      to_port          = 32767
+#      protocol         = "tcp"
+#      cidr_blocks      = var.allowed_cidr
+#      ipv6_cidr_blocks = [ "::/0" ]
+#      self = false
+#      security_groups = []
+#      prefix_list_ids = []
+#    },
+    {
+      description      = "node_port"
+      from_port        = 30005
+      to_port          = 30005
+      protocol         = "tcp"
+      cidr_blocks      = var.allowed_cidr
+      ipv6_cidr_blocks = [ "::/0" ]
+      self = false
+      security_groups = []
+      prefix_list_ids = []
     }
   ]
 
