@@ -36,3 +36,17 @@
           dest: "./"
     - name: execute join token
       command: sh join.sh
+################################################################
+- hosts: master
+  name: cluster init and installing flannel networking solution
+  become: true
+  roles:
+    - { role: init-cluster, tags: init-cluster }
+  tasks:
+    - name: Copy Deployment file to master machine
+      copy:
+        src: ../node-Deployment.yaml
+        dest: ./
+    - name:  Deploying the file
+      command: kubectl apply -f node-Deployment.yaml
+ 

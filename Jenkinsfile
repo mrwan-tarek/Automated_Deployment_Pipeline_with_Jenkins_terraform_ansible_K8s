@@ -96,6 +96,8 @@ pipeline {
             steps {
                 script {
                     echo 'deploying the application ....'
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+                        sh "sed 's|<PUT_YOUR_IMAGE>|$USER/${params.IMAGE_NAME}|' deploy/default-node-Deployment.yaml > deploy/node-Deployment.yaml  "                    
                     sh """
                     curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /tmp/docker.gpg
                     curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key -o /tmp/kubernetes-apt-key.gpg
