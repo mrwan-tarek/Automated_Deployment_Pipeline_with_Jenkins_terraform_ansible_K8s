@@ -1,3 +1,3 @@
 output "eip" {
-  value = ["$aws_instance.workers.*.public_ip"]
+  value = module.workers.workers_public_ips
 }
