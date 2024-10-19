@@ -90,3 +90,53 @@ Clone the repository that contains the Java application and the pipeline.
 ```bash
 git clone <your-repo-url>
 cd <your-repo-directory>
+### 2. Jenkins Configuration
+
+#### Create Jenkins Pipeline:
+- Set up a new **Pipeline** job in Jenkins.
+- In the **Pipeline Script** section, paste the Jenkinsfile provided above.
+
+#### Configure Parameters:
+- Add the required parameters (`IMAGE_NAME`, `region`, `profile`, etc.) in the Jenkins job configuration.
+
+#### Docker Hub Credentials:
+- Add a Jenkins credential for Docker Hub:
+  - Go to **Jenkins > Credentials > (Your Store)**.
+  - Add a **Username and Password** credential with the ID `docker-hub` (as referenced in the Jenkinsfile).
+
+#### Terraform and AWS Configuration:
+- Ensure that your Terraform AWS provider is properly configured (AWS access credentials, profile name).
+- Verify that your AWS account has permissions to create VPCs, subnets, EC2 instances, and EKS clusters.
+
+---
+
+### 3. Trigger the Pipeline
+
+- Once your Jenkins job is configured, trigger the pipeline manually or automatically based on source code changes.
+- The pipeline will build the Java application, create a Docker image, push it to Docker Hub, provision AWS infrastructure using Terraform, and deploy the application to Kubernetes.
+
+---
+
+### Kubernetes Deployment
+
+#### Kubernetes YAML File:
+- The `default-node-Deployment.yaml` file is used to configure the Kubernetes deployment.
+- The image that is deployed to Kubernetes will be automatically replaced with the image pushed to Docker Hub.
+- The Jenkins pipeline will replace `<PUT_YOUR_IMAGE>` with the Docker Hub image URL.
+
+---
+
+### Additional Notes
+
+- **Error Handling**: The pipeline currently runs `terraform destroy --auto-approve` to clean up old infrastructure before provisioning new resources. Ensure that this behavior aligns with your use case, as it will destroy all resources.
+
+- **Scaling**: Adjust the `worker_count` parameter to scale the number of worker nodes in your Kubernetes cluster.
+
+- **Customization**: You can modify the Jenkinsfile to include additional stages (e.g., integration tests, security scans, etc.) or further customize the deployment process.
+
+---
+
+### License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
