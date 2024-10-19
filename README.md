@@ -15,7 +15,7 @@ This project sets up a CI/CD pipeline for a Java application using **Jenkins**, 
 Before running the pipeline, ensure the following prerequisites are in place:
 
 1. **Jenkins Server**:
-   - Jenkins installed and running with necessary plugins (e.g., Docker, Terraform, AWS).
+   - Jenkins installed and running .
    - Jenkins agents configured to run Docker commands and Terraform scripts.
    
 2. **AWS Account**:
@@ -28,9 +28,8 @@ Before running the pipeline, ensure the following prerequisites are in place:
 4. **Terraform**:
    - Terraform installed on Jenkins agents to provision infrastructure.
 
-5. **Kubernetes Cluster**:
-   - AWS EKS (Elastic Kubernetes Service) or a self-hosted Kubernetes cluster.
-   - `kubectl` configured to access your cluster.
+5. **openJDK and maven**:
+   - openJDK and maven installed on Jenkins agents to test and package the app .
 
 ---
 
@@ -58,6 +57,8 @@ The pipeline has the following stages:
 
 ### 7. **Deploy Kubernetes Cluster**
    - The Kubernetes cluster is created using Terraform (`terraform apply`).
+   - The Ansible playbook is triggered as a local execute inside Terraform.
+   - The Ansible playbook install Kubernetes prerequisites, install kubeadm, kubectl, kubelet and initiate cluster  
    - The Docker image is deployed to the Kubernetes cluster using the Kubernetes Deployment YAML file (`deploy/default-node-Deployment.yaml`).
    
 ---
@@ -83,21 +84,16 @@ These parameters can be specified in the Jenkins job configuration for your pipe
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+### 1. inatll Prerequisites
 
-Clone the repository that contains the Java application and the pipeline.
+Make sure that all the Prerequisites mentioned before is installed, running and have permission to all of them.
 
-```bash
-git clone <your-repo-url>
-cd <your-repo-directory>
+
 ### 2. Jenkins Configuration
 
 #### Create Jenkins Pipeline:
 - Set up a new **Pipeline** job in Jenkins.
-- In the **Pipeline Script** section, paste the Jenkinsfile provided above.
-
-#### Configure Parameters:
-- Add the required parameters (`IMAGE_NAME`, `region`, `profile`, etc.) in the Jenkins job configuration.
+- In the **Pipeline Script from SCM** section, paste this github repo.
 
 #### Docker Hub Credentials:
 - Add a Jenkins credential for Docker Hub:
@@ -122,7 +118,6 @@ cd <your-repo-directory>
 #### Kubernetes YAML File:
 - The `default-node-Deployment.yaml` file is used to configure the Kubernetes deployment.
 - The image that is deployed to Kubernetes will be automatically replaced with the image pushed to Docker Hub.
-- The Jenkins pipeline will replace `<PUT_YOUR_IMAGE>` with the Docker Hub image URL.
 
 ---
 
