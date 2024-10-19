@@ -18,7 +18,7 @@ spec:
       - name: node-app
         image: <PUT_YOUR_IMAGE>
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -31,6 +31,6 @@ spec:
   type: NodePort
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 8080
+      targetPort: 8080
       nodePort: 30005   
