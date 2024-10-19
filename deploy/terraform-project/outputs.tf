@@ -1,6 +1,6 @@
 output "eip" {
   value = <<EOT
 The app IPs are:
-${join(":30005\n", module.workers.workers_public_ips)}
+${join("\n", [for ip in module.workers.workers_public_ips : 8080 ])}
 EOT
 }
