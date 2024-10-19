@@ -129,9 +129,5 @@ Make sure that all the Prerequisites mentioned before is installed, running and 
 
 - **Customization**: You can modify the Jenkinsfile to include additional stages (e.g., integration tests, security scans, etc.) or further customize the deployment process.
 
----
 
-### License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
