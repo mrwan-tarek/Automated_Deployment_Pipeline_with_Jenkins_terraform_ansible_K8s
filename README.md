@@ -1,4 +1,4 @@
-# Java Application CI/CD Pipeline
+# Automated Deployment Pipeline with Jenkins, terraform, ansible and K8s
 
 This project sets up a CI/CD pipeline for a Java application using **Jenkins**, **Docker**, **Terraform**, **Kubernetes**, and **AWS**. The pipeline automates building the Java application, creating a Docker image, pushing it to Docker Hub, and deploying it to a Kubernetes cluster on AWS.
 
