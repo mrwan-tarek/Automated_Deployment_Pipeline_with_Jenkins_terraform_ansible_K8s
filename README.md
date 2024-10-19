@@ -84,7 +84,7 @@ These parameters can be specified in the Jenkins job configuration for your pipe
 
 ## Setup Instructions
 
-### 1. inatll Prerequisites
+### 1. install Prerequisites
 
 Make sure that all the Prerequisites mentioned before is installed, running and have permission to all of them.
 
