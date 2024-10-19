@@ -25,6 +25,7 @@ pipeline {
                    echo " testing the application ...."
                     sh """
                     cd ./code
+                    npm install 
                     npm test
                     """
                 }
