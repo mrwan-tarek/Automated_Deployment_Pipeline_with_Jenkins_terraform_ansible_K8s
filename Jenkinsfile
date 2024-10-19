@@ -25,8 +25,18 @@ pipeline {
                    echo " testing the application ...."
                     sh """
                     cd ./code
-                    npm install 
-                    npm test
+                    mvn test
+                    """
+                }
+            }
+        }
+        stage(' Build Jar ') {
+            steps {
+                script {
+                    echo 'building the application ....'
+                    sh """
+                    cd ./code
+                    mvn package
                     """
                 }
             }
